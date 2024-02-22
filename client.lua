@@ -4,9 +4,6 @@ _menuPool = NativeUI.CreatePool()
 
 local isNearShop = false
 
-
--- Vorhandenen Code hier...
-
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
@@ -41,8 +38,6 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Vorhandenen Code hier...
-
 -- Funktion, um Blips für Shops zu erstellen
 function createShopBlips()
     for k, shop in pairs(Config.shops) do
@@ -57,20 +52,6 @@ function createShopBlips()
         EndTextCommandSetBlipName(blip)
     end
 end
-
--- Blips beim Start des Skripts erstellen
-Citizen.CreateThread(function()
-    -- Einfach eine kurze Verzögerung, um sicherzustellen, dass die Ressource geladen ist
-    Wait(500)
-    
-    createShopBlips() -- Blips für alle Shops erstellen
-end)
-
--- Vorhandenen Code hier...
-
-
-
-
 
 Citizen.CreateThread(function ()
     while true do 
@@ -131,3 +112,8 @@ function showInfobar(msg)
     AddTextComponentString(CurrentActionMsg)
     DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
+
+Citizen.CreateThread(function()
+    Wait(500)
+    createShopBlips()
+end)
